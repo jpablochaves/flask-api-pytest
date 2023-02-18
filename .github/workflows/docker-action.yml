@@ -14,4 +14,4 @@ jobs:
           who-to-greet: 'Gabriel y Alejandro'
       # Use the output from the `hello` step
       - name: Get the output time
-        run: echo "The time we greeted was: ${{ steps.hello.outputs.time }}"
+        run: echo "The time we greeted was ${{ steps.hello.outputs.time }}"
