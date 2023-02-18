@@ -1,0 +1,17 @@
+on: 
+  push:
+    branches: [main]
+
+jobs:
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: A job to say hello from a docker image
+    steps:
+      - name: Hello world action step
+        id: hello
+        uses: actions/hello-world-docker-action@v1
+        with:
+          who-to-greet: 'Gabriel y Alejandro'
+      # Use the output from the `hello` step
+      - name: Get the output time
+        run: echo "The time we greeted was: ${{ steps.hello.outputs.time }}"
