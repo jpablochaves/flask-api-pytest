@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from calculator.calculator import flask_app as app
 import calculator.utils.calculator_operations as oper
+from calculator.utils.validations import validate_add_operation
 
 
 __URL = '/calculator/operations'
@@ -14,6 +15,9 @@ def index():
 @app.route(f"{__URL}/add", methods=["POST"])
 def add_operation():
     content = request.json
+    if not validate_add_operation(content):
+        return jsonify({"error": "error in the add operation"})
+    #print(content, content["b"])
     res = oper.add(content["a"], content["b"])
     return jsonify({"result": res}), 200
 
